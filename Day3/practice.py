@@ -12,53 +12,28 @@ def readFile(name):
     
     return file
 
+
 def findMul(text):
     hits = r.findall(r"mul\([0-9]{1,3},[0-9]{1,3}\)|do\(\)|don\'t\(\)", text)
     return hits
 
 def calcPart1(mul):
-    values = getTheNumbers(mul)
+    print(mul[0])
+    print(mul[0][mul[0].find("(")+1:])
+    print(mul[0][:-1])
     
-    count = 0
-    for els in values:
-        if str(els[0]).isdigit():
-            count += els[0] * els[1]
-    print(count)
-            
-def calcPart2(mul):
-    values = getTheNumbers(mul)
-    doOn = True
-    count = 0
-
-    for els in values:
-        if els == "do()":
-            doOn = True
-        elif els == "don't()":
-            doOn = False
-        else:
-            if doOn == True:
-                count += els[0] * els[1]
-
-    print(count)
-
-def getTheNumbers(input):
     values = []
     x = []
-
-    for data in input:
+    for data in mul:
         if data[0] == "m":
             #values.append([data[data.find("(")+1:], data[:-1]])
             x = data.split(",")
             values.append([int(x[0][x[0].find("(")+1:]), int(x[1][:-1])])
-        else:
-            values.append(data)
-
-    return values
+    
+    print(values)
 
 filename = "input"
 problem = readFile(filename)
 mulList = findMul(problem)
-
 calcPart1(mulList)
-calcPart2(mulList)
 
