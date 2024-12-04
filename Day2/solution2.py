@@ -15,6 +15,7 @@ def readFile(name):
         temp = [int(entry) for entry in line.split() if entry.isdigit()]
         reportLevels.append(temp)
 
+    f.close()
     reportLevels.pop(0)
     return reportLevels
 
